@@ -169,7 +169,7 @@ const processMessage = ({ data }) => {
 const handleLogin = (event) => {
     event.preventDefault();
 
-    client.id = 1; //Math.floor(Math.random() * 1024) + "edrp84ur" + Math.floor(Math.random() * 1000); //crypto.randomUUID();
+    client.id = Math.floor(Math.random() * 1024) + "edrp84ur" + Math.floor(Math.random() * 1000); //crypto.randomUUID();
     client.name = userNameInput.value;
 
     localStorage.setItem("@clientData", JSON.stringify({ name: client.name }));
