@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css">
+    <title>ChatBox</title>
+</head>
+
+<body>
+
+    <section class="section__login">
+        <form class="login__form">
+            <h1>Crisnet ChatBox</h1>
+            <input placeholder="Nome do utilizador" id="input__login__user__name" required autocomplete="off" />
+            <!-- <input placeholder="Senha" id="input__login__password" /> -->
+            <button type="submit">Entrar</button>
+        </form> <!--FORM-->
+    </section> <!--Section Login-->
+
+    <section class="chat-contaner">
+        <section class="header">
+            <h2>Crisnet ChatBox</h2>
+            <a href="about.html" class="btn__about">Sobre</a>
+        </section>
+
+        <section class="messages">
+
+            <!--
+            <div class="message__self">
+                <span>Eu</span>
+                Olá galera, como que estão?
+            </div>
+
+            <div class="message__other">
+                <span>Eduardo</span>
+                Olá galera, como que estão?
+            </div>
+
+            <div class="message__self">
+                <span>Eu</span>
+                <img src="images/cristiano_dani.jpg">
+            </div>
+
+            <div class="message__other">
+                <span>UnKnow</span>
+                <img src="images/cristiano_dani.jpg">
+            </div>
+
+        -->
+
+            <div class="is__write" id="is__write">
+                <div class="typing">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span id="name">Desconhecido</span>
+            </div>
+
+        </section> <!--Messages Container-->
+
+        <aside class="menu">
+
+            <button class="options" id="icon__file">
+                <img src="images/icons/file-send-svgrepo-com.svg" alt="file transfer icon">
+            </button> <!--File transfer Icon-->
+
+            <button class="options" id="icon__video">
+                <img src="images/icons/video-file-svgrepo-com.svg" alt="video transfer icon">
+            </button> <!--Video transfer Icon-->
+
+            <input type="file" style="display: none;" id="input__file" accept="image/*">
+            <button class="options" id="icon__image__send">
+                <label for="input__file"
+                    style="display: flex; justify-content: center; align-items: center; cursor: pointer;">
+                    <img src="images/icons/image-circle-svgrepo-com.svg" alt="image transfer icon" />
+                </label>
+            </button> <!--Image transferer Icon-->
+
+        </aside> <!--Menu-->
+
+        <form class="chat__form">
+            <img src="images/icons/add-plus-square-svgrepo-com.svg" id="btn__open__menu" class="btn__open__menu">
+            <input type="text" placeholder="Digite a sua messagem" required id="input__message" autocomplete="off">
+            <button type="submit" id="btn__send__message" class="btn__send__message">
+                <img src="images/icons/sender_icon.svg" />
+            </button>
+            <button type="button" class="chat__btn__start__recorder__audio" id="chat__btn__start__recorder__audio">
+                <img src="images/icons/audio-svgrepo-com (1).svg" width="40px" height="30px" />
+            </button>
+        </form> <!--FORM-->
+
+    </section>
+
+    <script src="scripts/index.js"></script>
+
+</body>
+
+</html>
