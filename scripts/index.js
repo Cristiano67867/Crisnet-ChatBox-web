@@ -1,8 +1,6 @@
 const messageContaner = document.querySelector('.messages');
 const messageInput = document.getElementById("input__message");
 
-alert('Hello');
-
 const userNameInput = document.getElementById("input__login__user__name");
 //const passwordInput = document.getElementById("input__login__password");
 
