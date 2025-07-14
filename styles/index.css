@@ -282,6 +282,10 @@ html {
     .login__form {
         width: 300px;
     }
+
+    .header > h2 {
+        font-size: 1.2rem;
+    }
 }
 
 /* Menu */
@@ -324,4 +328,9 @@ html {
 
 .chat__form .btn__send__message {
     display: none;
+}
+
+.clients_online {
+    font-weight: bold;
+    color: #f2f2f2;
 }
