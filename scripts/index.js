@@ -4,7 +4,7 @@ const messageInput = document.getElementById("input__message");
 const userNameInput = document.getElementById("input__login__user__name");
 //const passwordInput = document.getElementById("input__login__password");
 
-const HOST = 'https://crisnet-chatbox.onrender.com' //'localhost';
+const HOST = 'https://crisnet-chatbox.onrender.com';
 //const PORT = 8080;
 
 let websocket;
@@ -144,7 +144,11 @@ const sendImage = (event) => {
 }
 
 const processMessage = ({ data }) => {
-    const { id, name, type, content, isWrite } = JSON.parse(data);
+    const { id, name, type, content, isWrite, clients } = JSON.parse(data);    
+
+    if (clients !== undefined) {
+        document.getElementById('clients_online').textContent = `${clients} online`;
+    }
 
     if (name && type && content) {
         messageContaner.appendChild(createMessageOtherElement(name, type, content));
@@ -170,10 +174,10 @@ const handleLogin = (event) => {
     client.id = Math.floor(Math.random() * 1024) + "edrp84ur" + Math.floor(Math.random() * 1000); //crypto.randomUUID();
     client.name = userNameInput.value;
 
-    localStorage.setItem("@clientData", JSON.stringify({ name: client.name }));
+    localStorage.setItem("@clientData", JSON.stringify({ name: client.name })); //To store name
 
-    websocket = new WebSocket(HOST);
-    websocket.onopen = () => websocket.send(JSON.stringify(client)); //IF the connection is Open send DAtaUser
+    websocket = new WebSocket(`${HOST}`);
+    websocket.onopen = () => websocket.send(JSON.stringify(client)); //IF the connection is Open send UserData
     websocket.onmessage = processMessage; //Passa as menssagens na function processMessage
 
     document.querySelector(".section__login").style.display = "none";
