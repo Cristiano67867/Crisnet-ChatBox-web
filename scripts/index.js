@@ -1,21 +1,20 @@
 const messageContaner = document.querySelector('.messages');
 const messageInput = document.getElementById("input__message");
-
+const btn_clients_online = document.getElementById('clients_online'); //Cliens menu online
 const userNameInput = document.getElementById("input__login__user__name");
-//const passwordInput = document.getElementById("input__login__password");
 
 const HOST = 'https://crisnet-chatbox.onrender.com';
-//const PORT = 8080;
+
+/*const PORT = 8080;
+const HOST = 'localhost';
+*/
 
 let websocket;
-const client = { id: "", name: "" };
+const client = { id: "", name: "", type: '' };
 const client_message = { type: "", content: "" };
 
 let typingTimer; //For store Time
 
-const openMenu = () => {
-    document.querySelector(".menu").classList.toggle("open");
-}
 
 const scrollScreen = () => {
     window.scrollTo({
@@ -82,7 +81,6 @@ const createMessageOtherElement = (name, type, content) => {
             div.textContent = content;
             div.appendChild(span);
             document.getElementById("is__write").style.visibility = "hidden"; //Para remover o indicador esta escrevendo quando a menssagem é enviada
-
             break;
 
         case "image":
@@ -144,11 +142,29 @@ const sendImage = (event) => {
 }
 
 const processMessage = ({ data }) => {
-    const { id, name, type, content, isWrite, clients } = JSON.parse(data);    
+    const { id, name, type, content, isWrite, client_counter, clients_name } = JSON.parse(data);
 
-    if (clients !== undefined) {
-        document.getElementById('clients_online').textContent = `${clients} online`;
+    //Render counter clients connected
+    if (client_counter !== undefined) {
+        document.getElementById('clients_online').textContent = `${client_counter} online`;
     }
+
+    //Rendering list names clients connected
+    if (clients_name) {
+        document.querySelector('.clients_menu_conected ul').textContent = ''; //For update list
+        clients_name.forEach(element => {
+            if (element !== client.name) {
+                const li = document.createElement('li');
+                const span = document.createElement('span');
+
+                li.textContent = element;
+                li.appendChild(span);
+
+                document.querySelector('.clients_menu_conected ul').appendChild(li);
+            }
+        });
+    }
+
 
     if (name && type && content) {
         messageContaner.appendChild(createMessageOtherElement(name, type, content));
@@ -173,6 +189,7 @@ const handleLogin = (event) => {
 
     client.id = Math.floor(Math.random() * 1024) + "edrp84ur" + Math.floor(Math.random() * 1000); //crypto.randomUUID();
     client.name = userNameInput.value;
+    client.type = 'login';
 
     localStorage.setItem("@clientData", JSON.stringify({ name: client.name })); //To store name
 
@@ -193,9 +210,12 @@ isWrite(); //Call the function isWrite()
 document.querySelector(".login__form").addEventListener('submit', handleLogin);
 document.querySelector(".chat__form").addEventListener('submit', sendMessage);
 document.querySelector("#input__file").addEventListener('change', sendImage);
-document.querySelector("#btn__open__menu").addEventListener("click", openMenu);
+document.querySelector("#btn__open__menu").addEventListener("click", () => document.querySelector(".menu").classList.toggle("open"));
+btn_clients_online.addEventListener("click", () => document.querySelector('.clients_menu_conected').classList.add('open')); //Open The menu clients connected
+document.querySelector('#btn_close_menu_clients').addEventListener("click", () => document.querySelector('.clients_menu_conected').classList.remove('open')); //Open The menu clients connected
+
 //document.querySelector("#stop__recorder").addEventListener("click", StopRecordAudio); //Feature
 //document.querySelector("#btn__start__recorder__audio").addEventListener("click", StartRecordAudio); //Feature
-document.querySelector("#chat__btn__start__recorder__audio").addEventListener("click", () => alert('Esta opção ainda esta em desenvolvimento')); //Feature
-document.querySelector("#icon__video").addEventListener("click", () => alert('Esta opção ainda esta em desenvolvimento')); //Feature
 document.querySelector("#icon__file").addEventListener("click", () => alert('Esta opção ainda esta em desenvolvimento')); //Feature
+document.querySelector("#icon__video").addEventListener("click", () => alert('Esta opção ainda esta em desenvolvimento')); //Feature
+document.querySelector("#chat__btn__start__recorder__audio").addEventListener("click", () => alert('Esta opção ainda esta em desenvolvimento')); //Feature
