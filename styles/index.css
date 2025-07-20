@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    list-style: none;
 }
 
 :root {
@@ -283,7 +284,7 @@ html {
         width: 300px;
     }
 
-    .header > h2 {
+    .header>h2 {
         font-size: 1.2rem;
     }
 }
@@ -333,4 +334,68 @@ html {
 .clients_online {
     font-weight: bold;
     color: #f2f2f2;
+    cursor: pointer;
+}
+
+/* MENU CLIENTS CONNCTED */
+.clients_menu_conected {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 8rem 1.5rem;
+    color: #fff;
+    display: none;
+    background-color: #000;
+    z-index: 10;
+}
+
+.clients_menu_conected .actions {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 1rem;
+
+}
+
+.clients_menu_conected .actions button {
+    border-radius: 2rem;
+    border: none;
+    padding: 0.74rem 2rem;
+    font-weight: bold;
+    transition: all ease .2s;
+    background-color: #52E9D8;
+    border: 1px solid #52E9D8;
+}
+
+.clients_menu_conected .actions button:hover {
+    color: #52E9D8;
+    background-color: transparent;
+}
+
+.clients_menu_conected .actions h2 {
+    font-weight: bold;
+    color: #52E9D8;
+    font-size: 1.7rem;
+}
+
+.clients_menu_conected ul li span {
+    width: 0.5rem;
+    height: 0.5rem;
+    display: block;
+    border-radius: 50%;
+    background-color: #52E9D8;
+}
+
+.clients_menu_conected ul li {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.clients_menu_conected.open {
+    display: block;
 }
